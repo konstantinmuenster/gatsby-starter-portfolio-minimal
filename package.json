@@ -8,7 +8,7 @@
     "@mdx-js/react": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",
     "framer-motion": "^1.10.2",
-    "gatsby": "^2.20.3",
+    "gatsby": "^2.21.33",
     "gatsby-image": "^2.2.36",
     "gatsby-plugin-gtag": "^1.0.12",
     "gatsby-plugin-manifest": "^2.3.2",
@@ -60,9 +60,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/konstantinmuenster/gatsby-portfolio"
+    "url": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal"
   },
   "bugs": {
-    "url": "https://github.com/konstantinmuenster/gatsby-portfolio/issues"
+    "url": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal/issues"
   }
 }

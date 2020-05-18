@@ -1,6 +1,6 @@
 # Gatsby Starter Portfolio Minimal
 #### A modern one-page portfolio with a clean yet expressive design.
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Netlify Status](https://api.netlify.com/api/v1/badges/16b36180-0897-40c5-925c-fefa0232555c/deploy-status)](https://app.netlify.com/sites/gatsby-starter-portfolio-minimal/deploys)
 
 Portfolio Minimal is a Gatsby Starter. Starters are boilerplate projects that can be used to set up new sites effortless. With this starter, you can create a modern one-page portfolio within minutes. 
 
@@ -8,7 +8,7 @@ Just install the starter, add your content, and there you go!
 
 <a href="#sections">Sections</a> · <a href="#features">Features</a> · <a href="#how-to-start">How to Start</a> · <a href="#edit-content">Edit Content</a> · <a href="#edit-theme">Edit Theme</a> · <a href="#edit-page-structure">Edit Page Structure</a> · <a href="#feedback">Feedback</a>
 
-<a href="#" target="_blank"><strong>🧐 LIVE DEMO</strong></a>
+<a href="https://gatsby-starter-portfolio-minimal.netlify.app/" target="_blank"><strong>🧐 LIVE DEMO</strong></a>
 
 ---
 
@@ -46,7 +46,7 @@ The starter is designed with a mobile-first approach and looks perfect on small 
 #### <img src="http://logok.org/wp-content/uploads/2015/10/Medium-logo-old.png" alt="Medium Icon" width="20" /> Medium Integration - Features latest articles.
 In case you are a writer on Medium, the starter has a easy to use Medium integration that allows you to feature your latest articles.
 
-To see all features in action, have a look at the <a href="#" target="_blank"><strong>live demo</strong></a>.
+To see all features in action, have a look at the <a href="https://gatsby-starter-portfolio-minimal.netlify.app/" target="_blank"><strong>live demo</strong></a>.
 
 ---
 
