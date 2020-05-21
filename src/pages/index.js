@@ -12,7 +12,7 @@ import Projects from "../components/sections/projects"
 import Contact from "../components/sections/contact"
 
 const IndexPage = ({ data }) => (
-  <Layout splashScreen={true}>
+  <Layout splashScreen={false}>
     <SEO title="Portfolio Minimal - A Gatsby Starter." />
     <Hero content={data.hero.edges} />
     {/* Articles is populated via Medium RSS Feed fetch */}
