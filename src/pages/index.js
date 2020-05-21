@@ -10,9 +10,10 @@ import About from "../components/sections/about"
 import Interests from "../components/sections/interests"
 import Projects from "../components/sections/projects"
 import Contact from "../components/sections/contact"
+import { splashScreen } from "../config"
 
 const IndexPage = ({ data }) => (
-  <Layout splashScreen={false}>
+  <Layout splashScreen={splashScreen}>
     <SEO title="Portfolio Minimal - A Gatsby Starter." />
     <Hero content={data.hero.edges} />
     {/* Articles is populated via Medium RSS Feed fetch */}
