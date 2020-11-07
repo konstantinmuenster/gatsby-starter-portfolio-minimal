@@ -12,7 +12,7 @@ module.exports = {
 
     // You can create your own Medium feed with this rss to json converter: https://rss2json.com/
     // To access your Medium RSS feed, just replace this url with your username: https://medium.com/feed/@{yourname}
-    mediumRssFeed: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40konstantin.muenster",
+    mediumRssFeed: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40konstantinmuenster",
     shownArticles: 3,
     
     // There are icons available for the following platforms: 
@@ -24,7 +24,7 @@ module.exports = {
         },
         {
             name: "Medium",
-            url: "https://medium.com/@konstantin.muenster"
+            url: "https://konstantinmuenster.medium.com/"
         },
         {
             name: "Github",
