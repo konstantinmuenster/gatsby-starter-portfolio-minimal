@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-import config from "../config/"
+import config from "../../config"
 
 const { navLinks } = config
 

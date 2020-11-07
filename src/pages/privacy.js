@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 import styled from "styled-components"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import config from "../config"
+import config from "../../config"
 import ContentWrapper from "../styles/ContentWrapper"
 import Layout from "../components/layout"
 import SEO from "../components/seo"

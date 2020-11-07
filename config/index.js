@@ -6,7 +6,7 @@ module.exports = {
     siteDescription: "A modern one-page portfolio with a clean yet expressive design.",
     siteUrl: "https://gatsby-starter-portfolio-minimal.netlify.app/",
     siteLanguage: "en_US",
-    siteIcon: "src/content/favicon.png", // Relative to gatsby-config file
+    siteIcon: "content/favicon.png", // Relative to gatsby-config file
     seoTitleSuffix: "Portfolio Minimal", // SEO title syntax will be e.g. "Imprint - {seoTitleSuffix}"
 
     splashScreen: false, // Set this to true if you want to use the splash screen

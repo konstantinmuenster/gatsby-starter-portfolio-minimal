@@ -4,7 +4,7 @@ import SkeletonLoader from "tiny-skeleton-loader-react"
 import { motion, useAnimation } from "framer-motion"
 
 import Context from "../../context"
-import config from "../../config"
+import config from "../../../config"
 import { parseDate } from "../../utils"
 import ContentWrapper from "../../styles/ContentWrapper"
 import Underlining from "../../styles/Underlining"

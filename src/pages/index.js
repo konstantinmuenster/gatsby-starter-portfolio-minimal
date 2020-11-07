@@ -10,7 +10,7 @@ import About from "../components/sections/about"
 import Interests from "../components/sections/interests"
 import Projects from "../components/sections/projects"
 import Contact from "../components/sections/contact"
-import { splashScreen, seoTitleSuffix } from "../config"
+import { splashScreen, seoTitleSuffix } from "../../config"
 
 const IndexPage = ({ data }) => {
   const { seoTitle, useSeoTitleSuffix } = data.index.edges[0].node.frontmatter
