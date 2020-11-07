@@ -1,11 +1,12 @@
-import React, { useRef } from "react"
+import React, { useRef, useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import { motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 
 import { useOnScreen } from "../../hooks/"
+import Context from "../../context/"
 import ContentWrapper from "../../styles/ContentWrapper"
 
 const StyledSection = styled.section`
@@ -63,22 +64,25 @@ const StyledContentWrapper = styled(ContentWrapper)`
 
 const About = ({ content }) => {
   const { frontmatter, body } = content[0].node
+  const { isIntroDone } = useContext(Context).state
+  const tControls = useAnimation()
+  const iControls = useAnimation()
 
   // Required for animating the text content
   const tRef = useRef()
   const tOnScreen = useOnScreen(tRef)
-  const tVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  }
 
   // Required for animating the image
   const iRef = useRef()
   const iOnScreen = useOnScreen(iRef)
-  const iVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0 },
-  }
+
+  // Only trigger animations if the intro is done or disabled
+  useEffect(() => {
+    if (isIntroDone) {
+      if (tOnScreen) tControls.start({ opacity: 1, y: 0 })
+      if (iOnScreen) iControls.start({ opacity: 1, x: 0 })
+    }
+  }, [isIntroDone, tControls, iControls, tOnScreen, iOnScreen])
 
   return (
     <StyledSection id="about">
@@ -86,8 +90,8 @@ const About = ({ content }) => {
         <motion.div
           className="inner-wrapper"
           ref={tRef}
-          variants={tVariants}
-          animate={tOnScreen ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 20 }}
+          animate={tControls}
         >
           <h3 className="section-title">{frontmatter.title}</h3>
           <div className="text-content">
@@ -97,8 +101,8 @@ const About = ({ content }) => {
         <motion.div
           className="image-content"
           ref={iRef}
-          variants={iVariants}
-          animate={iOnScreen ? "visible" : "hidden"}
+          initial={{ opacity: 0, x: 20 }}
+          animate={iControls}
         >
           <Img
             className="about-author"
