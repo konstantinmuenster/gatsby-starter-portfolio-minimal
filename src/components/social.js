@@ -25,6 +25,9 @@ const StyledSocialWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    overflow: visible;
+  }
 
   /* Workaround: https://stackoverflow.com/questions/38993170/last-margin-padding-collapsing-in-flexbox-grid-layout */
   &::after {
