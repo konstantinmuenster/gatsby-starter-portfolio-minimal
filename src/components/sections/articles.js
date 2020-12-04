@@ -37,7 +37,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
     }
     .articles {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       overflow-x: scroll;
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
@@ -47,8 +47,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
         display: none;
       }
       @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-        padding: 0;
-        overflow: visible;
+        padding: 0 1rem;
       }
       /* Show scrollbar if desktop and wrapper width > viewport width */
       @media (hover: hover) {
@@ -91,7 +90,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
         box-shadow: inset 0 -1rem 0 ${({ theme }) => theme.colors.secondary};
       }
       @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-        margin: 2rem auto;
+        margin: 2rem 2.5rem 2rem 0;
       }
       .category {
         color: ${({ theme }) => theme.colors.primary};
@@ -169,7 +168,7 @@ const Articles = () => {
                   </div>
                 </a>
               ))
-            : [...Array(MAX_ARTICLES)].map((i, key) => (
+            : [...Array(MAX_ARTICLES <= 3 ? MAX_ARTICLES : 3)].map((i, key) => (
               <div className="card" key={key}>
                 <SkeletonLoader 
                   background="#f2f2f2"

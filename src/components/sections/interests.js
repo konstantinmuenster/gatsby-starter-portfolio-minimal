@@ -51,7 +51,7 @@ const StyledInterests = styled.div`
   grid-auto-flow: column;
   column-gap: 1rem;
   row-gap: 1rem;
-  padding: 0 2.5rem;
+  padding: 0 2.5rem 1.25rem 2.5rem;
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
