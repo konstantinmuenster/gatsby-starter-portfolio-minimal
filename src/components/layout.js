@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import styled, { ThemeProvider } from "styled-components"
-import "typeface-roboto"
+import "fontsource-roboto/400.css"
+import "fontsource-roboto/700.css"
 
-import Context from "../context/"
-import Theme from "../styles/Theme"
-import GlobalStyle from "../styles/GlobalStyle"
+import { lightTheme, darkTheme } from "../styles/theme"
+import { useDarkMode } from "../hooks"
+import GlobalStyle from "../styles/globalStyle"
 import Header from "./header"
 import Footer from "./footer"
 
@@ -23,33 +24,25 @@ const StyledLayoutWrapper = styled.div`
   grid-template-columns: 100%;
 `
 
-const Layout = ({ children, splashScreen }) => {
-  
-  // you can determine whether you want to have a splashScreen
-  // for each page in the respective page component
-  // if splashScreen = false, we set isIntroDone = true to skip
-  // the splashScreen
-  const [state, setState] = useState({
-    isIntroDone: splashScreen ? false : true,
-  })
+const Layout = ({ children }) => {
+  // Enables dark mode if the user's OS has an active dark theme
+  const darkModeEnabled = useDarkMode()
+  const theme = darkModeEnabled ? darkTheme : lightTheme
 
   return (
     <StyledLayoutWrapper>
-      <Context.Provider value={{ state, setState }}>
-        <ThemeProvider theme={Theme}>
-          <GlobalStyle />
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </ThemeProvider>
-      </Context.Provider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
+        <main id="main-content">{children}</main>
+        <Footer />
+      </ThemeProvider>
     </StyledLayoutWrapper>
   )
 }
 
 Layout.propTypes = {
   children: PropTypes.any,
-  splashScreen: PropTypes.bool.isRequired,
 }
 
 export default Layout

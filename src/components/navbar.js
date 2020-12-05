@@ -2,9 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-import config from "../../config"
-
-const { navLinks } = config
+import { navLinks } from "../../config"
 
 const StyledNav = styled.nav`
   display: none;
@@ -51,7 +49,7 @@ const StyledNav = styled.nav`
     margin: 0;
     &:hover {
       background: ${({ theme }) => theme.colors.primary};
-      color: #ffffff;
+      color: ${({ theme }) => theme.colors.background};
     }
   }
 `
@@ -67,7 +65,9 @@ const Navbar = () => {
           </Link>
         )
       })}
-      <Link className="cta-btn" to={button.url}>{button.name}</Link>
+      <Link className="cta-btn" to={button.url}>
+        {button.name}
+      </Link>
     </StyledNav>
   )
 }

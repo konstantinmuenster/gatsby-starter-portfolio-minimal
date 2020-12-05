@@ -4,12 +4,11 @@ import { graphql } from "gatsby"
 import styled from "styled-components"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import config from "../../config"
-import ContentWrapper from "../styles/ContentWrapper"
+import GlobalStateProvider from "../context/provider"
+import ContentWrapper from "../styles/contentWrapper"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
-const { seoTitleSuffix } = config
+import { seoTitleSuffix } from "../../config"
 
 const StyledSection = styled.section`
   width: 100%;
@@ -42,21 +41,32 @@ const StyledContentWrapper = styled(ContentWrapper)`
 
 const Imprint = ({ data }) => {
   const { body, frontmatter } = data.imprint.edges[0].node
-  const { title, seoTitle, useSeoTitleSuffix } = frontmatter
-  const withSuffix = useSeoTitleSuffix === "true"
+  const { title, seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
+
+  const globalState = {
+    isIntroDone: useSplashScreen ? false : true,
+    darkMode: false,
+  }
+
   return (
-    <Layout splashScreen={false}>
-      <SEO
-        title={withSuffix ? `${seoTitle} - ${seoTitleSuffix}` : `${seoTitle}`}
-        meta={[{ name: "robots", content: "noindex" }]}
-      />
-      <StyledSection id={title}>
-        <StyledContentWrapper>
-          <h1>{title}</h1>
-          <MDXRenderer>{body}</MDXRenderer>
-        </StyledContentWrapper>
-      </StyledSection>
-    </Layout>
+    <GlobalStateProvider initialState={globalState}>
+      <Layout>
+        <SEO
+          title={
+            useSeoTitleSuffix
+              ? `${seoTitle} - ${seoTitleSuffix}`
+              : `${seoTitle}`
+          }
+          meta={[{ name: "robots", content: "noindex" }]}
+        />
+        <StyledSection id={title}>
+          <StyledContentWrapper>
+            <h1>{title}</h1>
+            <MDXRenderer>{body}</MDXRenderer>
+          </StyledContentWrapper>
+        </StyledSection>
+      </Layout>
+    </GlobalStateProvider>
   )
 }
 
@@ -87,6 +97,7 @@ export const pageQuery = graphql`
             title
             seoTitle
             useSeoTitleSuffix
+            useSplashScreen
           }
         }
       }

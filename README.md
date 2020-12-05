@@ -8,7 +8,9 @@ Just install the starter, add your content, and there you go!
 
 <a href="#sections">Sections</a> · <a href="#features">Features</a> · <a href="#how-to-start">How to Start</a> · <a href="#edit-content">Edit Content</a> · <a href="#edit-theme">Edit Theme</a> · <a href="#edit-page-structure">Edit Page Structure</a> · <a href="#feedback">Feedback</a>
 
-<a href="https://gatsby-starter-portfolio-minimal.netlify.app/" target="_blank"><strong>🧐 LIVE DEMO</strong></a>
+<a href="https://gatsby-starter-portfolio-minimal.netlify.app/" target="_blank"><strong>>> LIVE DEMO</strong></a>
+
+**New Features:** 🌛 Dark Mode · 🪟 Splash Screen
 
 ---
 
@@ -30,6 +32,9 @@ The starter has predefined sections as well as a template that you can use to cr
 ---
 
 ## Features
+
+#### 🌛 [NEW] Dark Mode - Based on user's preferences.
+If the user's OS is set to using dark mode, the Gatsby Starter will automatically switch to a dark theme too.
 
 #### 🕹️ Quick and Easy Setup - Add content and deloy.
 Just install the starter, add your content, and deploy it! This starter works seamlessly with hosts like Netlify.
@@ -87,24 +92,24 @@ After you installed the starter project, you most likely want to add your own co
 First, you want to edit the config file which stores the site's configuration (e.g. title, description) and social profiles.
 
 ```
-|-- src
-    |-- config
-        |-- index.js
+|-- config
+    |-- index.js
 ```
 
 Navigate to the `index.js` file in the config folder, edit the configuration, save it, that's it!
 
-### Edit section content
+### Edit page content
 
 Next, you can edit the content for each section you want to be displayed. By default, all sections are shown. If you want to remove certain sections from the site, check out <a href="#editing-page-structure">this part of the Readme</a>.
 
 ```
-|-- src
-    |-- content
-        |-- about
-        |-- contact
-        |-- hero
-        ...
+|-- content
+    |-- imprint
+    |-- index
+       |-- about
+       |-- contact
+       ...
+    ...
 ```
 
 You find all content in the content folder (surprisingly). For content integration, the project uses MDX, a Markdown format. If you haven't worked with Markdown or MDX before, check the Markdown syntax in <a href="https://www.gatsbyjs.org/docs/mdx/markdown-syntax/" target="_blank">Gatsby's docs</a>. They also provide <a href="https://www.gatsbyjs.org/docs/mdx/writing-pages/" target="_blank">further information about MDX</a>.
@@ -115,9 +120,9 @@ To get up and running, just edit the predefined data fields in each `mdx` file.
 
 ## Edit Theme
 
-You find the theme settings in the following file: `src/styles/Theme.js`
+You find the color and font settings in the configuration file, located at: `config/index.js`.
 
-There, you can change colors, breakpoints, fonts, and other design-related properties.
+> Note: The usage of the splash screen can be set for each page individually in the page content directory.
 
 ---
 

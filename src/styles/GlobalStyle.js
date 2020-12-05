@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
 import modernNormalize from "styled-modern-normalize"
 
 const GlobalStyle = createGlobalStyle`
@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         margin: 0;
         padding: 0;
-        background-color: #ffffff;
+        background-color: ${({ theme }) => theme.colors.background};
         color: ${({ theme }) => theme.colors.text};
         font-size: 1rem;
         font-family: ${({ theme }) => theme.fonts.primary};
@@ -97,6 +97,6 @@ const GlobalStyle = createGlobalStyle`
         opacity: 0.1;
       }
 
-`;
+`
 
 export default GlobalStyle

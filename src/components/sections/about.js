@@ -7,7 +7,7 @@ import { motion, useAnimation } from "framer-motion"
 
 import { useOnScreen } from "../../hooks/"
 import Context from "../../context/"
-import ContentWrapper from "../../styles/ContentWrapper"
+import ContentWrapper from "../../styles/contentWrapper"
 
 const StyledSection = styled.section`
   width: 100%;

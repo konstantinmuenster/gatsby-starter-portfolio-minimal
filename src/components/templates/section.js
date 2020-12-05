@@ -5,7 +5,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import ContentWrapper from "../styles/ContentWrapper"
+import ContentWrapper from "../styles/contentWrapper"
 
 // Full Width Section
 const StyledSection = styled.section`

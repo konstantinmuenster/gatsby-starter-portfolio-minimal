@@ -1,5 +1,2 @@
-import useOnScreen from "./useOnScreen"
-
-export {
-    useOnScreen
-}
+export { default as useOnScreen } from "./useOnScreen"
+export { default as useDarkMode } from "./useDarkMode"

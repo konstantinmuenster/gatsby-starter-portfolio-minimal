@@ -6,11 +6,11 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { motion, useAnimation } from "framer-motion"
 
 import Context from "../../context/"
-import ContentWrapper from "../../styles/ContentWrapper"
-import Underlining from "../../styles/Underlining"
+import ContentWrapper from "../../styles/contentWrapper"
+import Underlining from "../../styles/underlining"
 import Social from "../social"
 import SplashScreen from "../splashScreen"
-import Theme from "../../styles/Theme"
+import { lightTheme, darkTheme } from "../../styles/theme"
 
 const StyledSection = styled.section`
   width: 100%;
@@ -65,7 +65,7 @@ const AnimatedUnderlining = motion.custom(Underlining)
 
 const Hero = ({ content }) => {
   const { frontmatter, body } = content[0].node
-  const { isIntroDone } = useContext(Context).state
+  const { isIntroDone, darkMode } = useContext(Context).state
 
   // Controls to orchestrate animations of greetings, emoji, social profiles, underlining
   const gControls = useAnimation()
@@ -92,14 +92,16 @@ const Hero = ({ content }) => {
         })
         // Animate underlining to hover state
         await uControls.start({
-          boxShadow: `inset 0 -2rem 0 ${Theme.colors.secondary}`,
+          boxShadow: `inset 0 -2rem 0 ${
+            darkMode ? darkTheme.colors.secondary : lightTheme.colors.secondary
+          }`,
           transition: { delay: 0.4, ease: "circOut" },
         })
       }
     }
     pageLoadSequence()
-  }, [isIntroDone, eControls, gControls, sControls, uControls])
-  
+  }, [isIntroDone, darkMode, eControls, gControls, sControls, uControls])
+
   return (
     <StyledSection id="hero">
       {!isIntroDone && <SplashScreen />}
@@ -116,8 +118,7 @@ const Hero = ({ content }) => {
           </h1>
           <h2 className="subtitle">
             {frontmatter.subtitlePrefix}{" "}
-            {/* Hover state color can be set in useEffect hook */}
-            <AnimatedUnderlining animate={uControls} color="tertiary" big>
+            <AnimatedUnderlining animate={uControls} big>
               {frontmatter.subtitle}
             </AnimatedUnderlining>
           </h2>

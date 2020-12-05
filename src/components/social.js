@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import config from "../../config"
+import Context from "../context"
 import Icon from "./icons"
-
-const { socialMedia } = config
+import { lightTheme, darkTheme } from "../styles/theme"
+import { socialMedia } from "../../config"
 
 const StyledSocialWrapper = styled.div`
   display: grid;
@@ -37,6 +37,7 @@ const StyledSocialWrapper = styled.div`
 
   /* Show scrollbar if desktop and wrapper width > viewport width */
   @media (hover: hover) {
+    scrollbar-color: ${({ theme }) => theme.colors.scrollBar} transparent; //Firefox only
     &::-webkit-scrollbar {
       display: block;
       -webkit-appearance: none;
@@ -48,12 +49,12 @@ const StyledSocialWrapper = styled.div`
 
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
-      border: 0.2rem solid white;
-      background-color: rgba(0, 0, 0, 0.5);
+      border: 0.2rem solid ${({ theme }) => theme.colors.background};
+      background-color: ${({ theme }) => theme.colors.scrollBar};
     }
 
     &::-webkit-scrollbar-track {
-      background-color: #fff;
+      background-color: ${({ theme }) => theme.colors.background};
       border-radius: 8px;
     }
   }
@@ -87,11 +88,10 @@ const StyledSocialProfile = styled.a`
   color: ${({ theme }) => theme.colors.primary};
   &:hover {
     background-position: left bottom;
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.background};
   }
   &:hover svg {
-    /* Change svg color to white */
-    filter: brightness(0) invert(1);
+    filter: invert(1);
   }
   svg {
     height: 1rem;
@@ -101,27 +101,41 @@ const StyledSocialProfile = styled.a`
   }
 `
 
-const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => (
-  <StyledSocialWrapper itemCount={socialMedia.length}>
-    {socialMedia.map(({ name, url }, key) => {
-      return (
-        <StyledSocialProfile
-          key={key}
-          href={url}
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          aria-label={name}
-          width={width}
-          padding={padding}
-          fontSize={fontSize}
-          fontWeight={fontWeight}
-        >
-          {withIcon ? <Icon name={name} /> : null} {name}
-        </StyledSocialProfile>
-      )
-    })}
-  </StyledSocialWrapper>
-)
+const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
+  const { darkMode } = useContext(Context).state
+  
+  return (
+    <StyledSocialWrapper itemCount={socialMedia.length}>
+      {socialMedia.map(({ name, url }, key) => {
+        return (
+          <StyledSocialProfile
+            key={key}
+            href={url}
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            aria-label={name}
+            width={width}
+            padding={padding}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+          >
+            {withIcon ? (
+              <Icon
+                name={name}
+                color={
+                  darkMode
+                    ? darkTheme.colors.primary
+                    : lightTheme.colors.primary
+                }
+              />
+            ) : null}{" "}
+            {name}
+          </StyledSocialProfile>
+        )
+      })}
+    </StyledSocialWrapper>
+  )
+}
 
 Social.propTypes = {
   width: PropTypes.string,

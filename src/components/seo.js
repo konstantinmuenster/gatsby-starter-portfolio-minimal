@@ -3,9 +3,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Theme from "../styles/Theme"
-
-const { colors } = Theme
+import { lightTheme } from "../styles/theme"
 
 const SEO = ({ description, lang, meta, title }) => {
   const { site } = useStaticQuery(
@@ -70,11 +68,11 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           name: `msapplication-TileColor`,
-          content: colors.primary,
+          content: lightTheme.colors.primary,
         },
         {
           name: `theme-color`,
-          content: colors.primary,
+          content: lightTheme.colors.primary,
         },
       ].concat(meta)}
     />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useContext } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -7,10 +7,12 @@ import VisibilitySensor from "react-visibility-sensor"
 import { motion } from "framer-motion"
 
 import { useOnScreen } from "../../hooks"
-import ContentWrapper from "../../styles/ContentWrapper"
-import Underlining from "../../styles/Underlining"
-import Button from "../../styles/Button"
+import Context from "../../context"
+import ContentWrapper from "../../styles/contentWrapper"
+import Underlining from "../../styles/underlining"
+import Button from "../../styles/button"
 import Icon from "../../components/icons"
+import { lightTheme, darkTheme } from "../../styles/theme"
 
 const StyledSection = styled.section`
   width: 100%;
@@ -68,6 +70,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
       }
       /* Show scrollbar if desktop and wrapper width > viewport width */
       @media (hover: hover) {
+        scrollbar-color: ${({ theme }) => theme.colors.scrollBar} transparent; // Firefox only
         &::-webkit-scrollbar {
           display: block;
           -webkit-appearance: none;
@@ -79,12 +82,12 @@ const StyledContentWrapper = styled(ContentWrapper)`
 
         &::-webkit-scrollbar-thumb {
           border-radius: 8px;
-          border: 0.2rem solid white;
-          background-color: rgba(0, 0, 0, 0.5);
+          border: 0.2rem solid ${({ theme }) => theme.colors.background};
+          background-color: ${({ theme }) => theme.colors.scrollBar};
         }
 
         &::-webkit-scrollbar-track {
-          background-color: #fff;
+          background-color: ${({ theme }) => theme.colors.background};
           border-radius: 8px;
         }
       }
@@ -197,6 +200,7 @@ const StyledProject = styled(motion.div)`
 `
 
 const Projects = ({ content }) => {
+  const { darkMode } = useContext(Context).state
   const sectionDetails = content[0].node
   const projects = content.slice(1, content.length)
 
@@ -231,6 +235,7 @@ const Projects = ({ content }) => {
       initial[project.node.frontmatter.position] = false
     })
     setOnScreen(initial)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Required for animating the title
@@ -287,11 +292,7 @@ const Projects = ({ content }) => {
                     <MDXRenderer>{body}</MDXRenderer>
                     <div className="tags">
                       {frontmatter.tags.map(tag => (
-                        <Underlining
-                          key={tag}
-                          color="secondary"
-                          hoverColor="secondary"
-                        >
+                        <Underlining key={tag} highlight>
                           {tag}
                         </Underlining>
                       ))}
@@ -304,7 +305,14 @@ const Projects = ({ content }) => {
                           rel="nofollow noopener noreferrer"
                           aria-label="External Link"
                         >
-                          <Icon name="github" color="#888888" />
+                          <Icon
+                            name="github"
+                            color={
+                              darkMode
+                                ? darkTheme.colors.subtext
+                                : lightTheme.colors.subtext
+                            }
+                          />
                         </a>
                       )}
                       {frontmatter.external && (
@@ -314,7 +322,14 @@ const Projects = ({ content }) => {
                           rel="nofollow noopener noreferrer"
                           aria-label="External Link"
                         >
-                          <Icon name="external" color="#888888" />
+                          <Icon
+                            name="external"
+                            color={
+                              darkMode
+                                ? darkTheme.colors.subtext
+                                : lightTheme.colors.subtext
+                            }
+                          />
                         </a>
                       )}
                     </div>
@@ -334,21 +349,21 @@ const Projects = ({ content }) => {
           })}
         </div>
       </StyledContentWrapper>
-      {sectionDetails.frontmatter.buttonVisible === "true" && (
+      {sectionDetails.frontmatter.buttonVisible && (
         <motion.a
-        ref={bRef}
-        variants={bVariants}
-        animate={bOnScreen ? "visible" : "hidden"}
-        className="cta-btn"
-        href={sectionDetails.frontmatter.buttonUrl}
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-        aria-label="External Link"
-      >
-        <Button type="button" textAlign="center" color="primary" center>
-          {sectionDetails.frontmatter.buttonText}
-        </Button>
-      </motion.a>
+          ref={bRef}
+          variants={bVariants}
+          animate={bOnScreen ? "visible" : "hidden"}
+          className="cta-btn"
+          href={sectionDetails.frontmatter.buttonUrl}
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          aria-label="External Link"
+        >
+          <Button type="button" textAlign="center" center>
+            {sectionDetails.frontmatter.buttonText}
+          </Button>
+        </motion.a>
       )}
     </StyledSection>
   )

@@ -6,7 +6,7 @@ import { motion, useAnimation } from "framer-motion"
 
 import Context from "../context"
 import { detectMobileAndTablet, isSSR } from "../utils/"
-import ContentWrapper from "../styles/ContentWrapper"
+import ContentWrapper from "../styles/contentWrapper"
 import Logo from "./logo"
 import Sidebar from "./sidebar"
 import Navbar from "./navbar"

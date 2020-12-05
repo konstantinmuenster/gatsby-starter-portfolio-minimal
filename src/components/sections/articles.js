@@ -4,12 +4,11 @@ import SkeletonLoader from "tiny-skeleton-loader-react"
 import { motion, useAnimation } from "framer-motion"
 
 import Context from "../../context"
-import config from "../../../config"
+import ContentWrapper from "../../styles/contentWrapper"
+import Underlining from "../../styles/underlining"
 import { parseDate } from "../../utils"
-import ContentWrapper from "../../styles/ContentWrapper"
-import Underlining from "../../styles/Underlining"
-
-const { mediumRssFeed, shownArticles } = config
+import { mediumRssFeed, shownArticles } from "../../../config"
+import { lightTheme, darkTheme } from "../../styles/theme"
 
 const StyledSection = motion.custom(styled.section`
   width: 100%;
@@ -51,6 +50,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
       }
       /* Show scrollbar if desktop and wrapper width > viewport width */
       @media (hover: hover) {
+        scrollbar-color: ${({ theme }) => theme.colors.scrollBar} transparent; // Firefox only
         &::-webkit-scrollbar {
           display: block;
           -webkit-appearance: none;
@@ -62,12 +62,12 @@ const StyledContentWrapper = styled(ContentWrapper)`
 
         &::-webkit-scrollbar-thumb {
           border-radius: 8px;
-          border: 0.2rem solid white;
-          background-color: rgba(0, 0, 0, 0.5);
+          border: 0.2rem solid ${({ theme }) => theme.colors.background};
+          background-color: ${({ theme }) => theme.colors.scrollBar};
         }
 
         &::-webkit-scrollbar-track {
-          background-color: #fff;
+          background-color: ${({ theme }) => theme.colors.background};
           border-radius: 8px;
         }
       }
@@ -80,11 +80,12 @@ const StyledContentWrapper = styled(ContentWrapper)`
       justify-content: center;
       padding: 1rem;
       margin: 2rem 1rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 5px 15px ${({ theme }) => theme.colors.boxShadow};
       border-radius: ${({ theme }) => theme.borderRadius};
+      background: ${({ theme }) => theme.colors.card};
       transition: box-shadow 0.3s ease-out;
       &:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.32);
+        box-shadow: 0 5px 15px ${({ theme }) => theme.colors.boxShadowHover};
       }
       &:hover ${Underlining} {
         box-shadow: inset 0 -1rem 0 ${({ theme }) => theme.colors.secondary};
@@ -104,7 +105,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
       }
       .date {
         font-size: 0.75rem;
-        color: #555555;
+        color: ${({ theme }) => theme.colors.subtext};
         letter-spacing: +0.5px;
       }
     }
@@ -112,31 +113,32 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `
 
 const Articles = () => {
-  // shownArticles is set in config.js, due to the rss feed loader
-  // it is currently limited to max 3
   const MAX_ARTICLES = shownArticles
 
-  const { isIntroDone } = useContext(Context).state
+  const { isIntroDone, darkMode } = useContext(Context).state
   const [articles, setArticles] = useState()
   const articlesControls = useAnimation()
-  
+
   // Load and display articles after the splashScreen sequence is done
   useEffect(() => {
     const loadArticles = async () => {
       if (isIntroDone) {
-        await articlesControls.start({ opacity: 1, y: 0, transition: { delay: 1 } })
-        // MediumRssFeed is set in config.js
+        await articlesControls.start({
+          opacity: 1,
+          y: 0,
+          transition: { delay: 1 },
+        })
         fetch(mediumRssFeed, { headers: { Accept: "application/json" } })
-        .then(res => res.json())
-        // Feed also contains comments, therefore we filter for articles only
-        .then(data => data.items.filter(item => item.categories.length > 0))
-        .then(newArticles => newArticles.slice(0, MAX_ARTICLES))
-        .then(articles => setArticles(articles))
-        .catch(error => console.log(error))
+          .then(res => res.json())
+          // Feed also contains comments, therefore we filter for articles only
+          .then(data => data.items.filter(item => item.categories.length > 0))
+          .then(newArticles => newArticles.slice(0, MAX_ARTICLES))
+          .then(articles => setArticles(articles))
+          .catch(error => console.log(error))
       }
     }
     loadArticles()
-  },[isIntroDone, articlesControls, MAX_ARTICLES])
+  }, [isIntroDone, articlesControls, MAX_ARTICLES])
 
   return (
     <StyledSection
@@ -169,24 +171,36 @@ const Articles = () => {
                 </a>
               ))
             : [...Array(MAX_ARTICLES <= 3 ? MAX_ARTICLES : 3)].map((i, key) => (
-              <div className="card" key={key}>
-                <SkeletonLoader 
-                  background="#f2f2f2"
-                  height="1.5rem" 
-                  style={{ marginBottom: ".5rem" }}
-                />
-                <SkeletonLoader 
-                  background="#f2f2f2" 
-                  height="4rem"
-                />
-                <SkeletonLoader 
-                  background="#f2f2f2" 
-                  height=".75rem" 
-                  width="50%" 
-                  style={{ marginTop: ".5rem" }}
-                />
-              </div>
-            ))}
+                <div className="card" key={key}>
+                  <SkeletonLoader
+                    height="1.5rem"
+                    style={{ marginBottom: ".5rem" }}
+                    background={
+                      darkMode
+                        ? darkTheme.colors.tertiary
+                        : lightTheme.colors.tertiary
+                    }
+                  />
+                  <SkeletonLoader
+                    height="4rem"
+                    background={
+                      darkMode
+                        ? darkTheme.colors.tertiary
+                        : lightTheme.colors.tertiary
+                    }
+                  />
+                  <SkeletonLoader
+                    height=".75rem"
+                    width="50%"
+                    style={{ marginTop: ".5rem" }}
+                    background={
+                      darkMode
+                        ? darkTheme.colors.tertiary
+                        : lightTheme.colors.tertiary
+                    }
+                  />
+                </div>
+              ))}
         </div>
       </StyledContentWrapper>
     </StyledSection>

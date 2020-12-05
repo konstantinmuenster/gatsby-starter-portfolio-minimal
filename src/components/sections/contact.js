@@ -6,8 +6,8 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { motion } from "framer-motion"
 
 import { useOnScreen } from "../../hooks"
-import ContentWrapper from "../../styles/ContentWrapper"
-import Underlining from "../../styles/Underlining"
+import ContentWrapper from "../../styles/contentWrapper"
+import Underlining from "../../styles/underlining"
 import Social from "../social"
 
 const StyledSection = styled(motion.section)`
@@ -81,7 +81,7 @@ const Contact = ({ content }) => {
             <strong>{frontmatter.name}</strong>
             <br />
             <a href={`mailto:${frontmatter.email}`}>
-              <Underlining color="secondary" hoverColor="secondary">
+              <Underlining highlight>
                 {frontmatter.email}
               </Underlining>
             </a>

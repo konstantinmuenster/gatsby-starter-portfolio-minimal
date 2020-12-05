@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import Img from "gatsby-image"
-import { motion, useAnimation } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 
 import { detectMobileAndTablet, isSSR } from "../../utils"
-import { useOnScreen }  from "../../hooks/"
-import ContentWrapper from "../../styles/ContentWrapper"
-import Button from "../../styles/Button"
+import { useOnScreen } from "../../hooks/"
+import ContentWrapper from "../../styles/contentWrapper"
+import Button from "../../styles/button"
 
 const StyledSection = styled.section`
   width: 100%;
@@ -72,6 +72,7 @@ const StyledInterests = styled.div`
   }
   /* Show scrollbar if desktop and wrapper width > viewport width */
   @media (hover: hover) {
+    scrollbar-color: ${({ theme }) => theme.colors.scrollBar} transparent; // Firefox only
     &::-webkit-scrollbar {
       display: block;
       -webkit-appearance: none;
@@ -83,12 +84,12 @@ const StyledInterests = styled.div`
 
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
-      border: 0.2rem solid white;
-      background-color: rgba(0, 0, 0, 0.5);
+      border: 0.2rem solid ${({ theme }) => theme.colors.background};
+      background-color: ${({ theme }) => theme.colors.scrollBar};
     }
 
     &::-webkit-scrollbar-track {
-      background-color: #fff;
+      background-color: ${({ theme }) => theme.colors.background};
       border-radius: 8px;
     }
   }
@@ -102,6 +103,7 @@ const StyledInterests = styled.div`
     padding: 1rem;
     border: 0.125rem solid ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.borderRadius};
+    background: ${({ theme }) => theme.colors.card};
     .icon {
       margin-right: 0.5rem;
     }
@@ -135,7 +137,9 @@ const Interests = ({ content }) => {
         // i receives the value of the custom prop - can be used to stagger
         // the animation of each "interest" element
         await iControls.start(i => ({
-          opacity: 1, scaleY: 1, transition: { delay: i * 0.1 }
+          opacity: 1,
+          scaleY: 1,
+          transition: { delay: i * 0.1 },
         }))
         await bControls.start({ opacity: 1, scaleY: 1 })
       }
@@ -151,14 +155,14 @@ const Interests = ({ content }) => {
         <h3 className="section-title">{frontmatter.title}</h3>
         <StyledInterests itemCount={interests.length} ref={ref}>
           {interests.slice(0, shownInterests).map(({ name, icon }, key) => (
-            <motion.div 
-              className="interest" 
-              key={key} 
-              custom={key} 
+            <motion.div
+              className="interest"
+              key={key}
+              custom={key}
               initial={{ opacity: 0, scaleY: 0 }}
               animate={iControls}
             >
-                <Img className="icon" fixed={icon.childImageSharp.fixed} /> {name}
+              <Img className="icon" fixed={icon.childImageSharp.fixed} /> {name}
             </motion.div>
           ))}
           {shownInterests < interests.length && (
@@ -167,7 +171,6 @@ const Interests = ({ content }) => {
                 onClick={() => showMoreItems()}
                 type="button"
                 textAlign="left"
-                color="primary"
               >
                 + Load more
               </Button>
