@@ -10,6 +10,8 @@ Just install the starter, add your content, and there you go!
 
 <a href="https://gatsby-starter-portfolio-minimal.netlify.app/" target="_blank"><strong>>> LIVE DEMO</strong></a>
 
+<a href="https://konstantin.digital/" target="_blank"><strong>>> LIVE DEMO (with Splash Screen)</strong></a>
+
 **New Features:** 🌛 Dark Mode · 🪟 Splash Screen
 
 ---
