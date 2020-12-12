@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 import IconXing from "./xing"
 import IconLinkedIn from "./linkedin"
@@ -27,4 +28,9 @@ const Icon = ({ name, color }) => {
   }
 }
 
-export default Icon;
+Icon.propTypes = {
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string,
+}
+
+export default Icon

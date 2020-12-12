@@ -103,7 +103,7 @@ const StyledSocialProfile = styled.a`
 
 const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
   const { darkMode } = useContext(Context).state
-  
+
   return (
     <StyledSocialWrapper itemCount={socialMedia.length}>
       {socialMedia.map(({ name, url }, key) => {

@@ -54,7 +54,9 @@ const Footer = () => {
         <Link to="/" aria-label="home">
           <Logo
             size="1.5rem"
-            color={darkMode ? darkTheme.colors.primary : lightTheme.colors.background}
+            color={
+              darkMode ? darkTheme.colors.primary : lightTheme.colors.background
+            }
           />
         </Link>
         <div className="footer-links">

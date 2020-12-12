@@ -10,7 +10,7 @@ const StyledLogo = styled.div`
 
   font-size: ${({ size }) => (size ? size : "1.75rem")};
   font-weight: 900;
-  color: ${({ theme, color }) => theme.colors[color] || color };
+  color: ${({ theme, color }) => theme.colors[color] || color};
 
   /* Disable effects when sidebar is open */
   filter: none !important;

@@ -40,6 +40,10 @@ Button.propTypes = {
   onClick: PropTypes.func,
   textAlign: PropTypes.string,
   center: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 }
 
 export default Button

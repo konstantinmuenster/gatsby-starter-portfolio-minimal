@@ -6,7 +6,7 @@ const {
   siteIcon,
   siteUrl,
   colors,
-} = require("./config")
+} = require(`./config`)
 
 module.exports = {
   siteMetadata: {
@@ -64,6 +64,18 @@ module.exports = {
       options: {
         path: `${__dirname}/content`,
         name: `content`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-eslint`,
+      options: {
+        test: /\.js$|\.jsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: [`develop`],
+        options: {
+          emitWarning: true,
+          failOnError: false,
+        },
       },
     },
   ],
