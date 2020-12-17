@@ -55,6 +55,7 @@
     "gatsby-plugin-eslint": "^2.0.8",
     "husky": "^4.3.5",
     "lint-staged": "^10.5.3",
+    "netlify-plugin-cypress": "^1.4.1",
     "prettier": "^1.19.1",
     "start-server-and-test": "^1.11.6"
   },
