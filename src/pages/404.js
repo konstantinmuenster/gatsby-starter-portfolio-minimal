@@ -43,7 +43,7 @@ const NotFoundPage = () => {
         />
         <StyledSection>
           <StyledContentWrapper>
-            <h1>NOT FOUND</h1>
+            <h1 data-testid="heading">NOT FOUND</h1>
             <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
           </StyledContentWrapper>
         </StyledSection>

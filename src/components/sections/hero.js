@@ -106,7 +106,11 @@ const Hero = ({ content }) => {
     <StyledSection id="hero">
       {!isIntroDone && <SplashScreen />}
       <StyledContentWrapper>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={gControls}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={gControls}
+          data-testid="animated-heading"
+        >
           <h1 className="title">
             <div className="greetings">
               {frontmatter.greetings}
