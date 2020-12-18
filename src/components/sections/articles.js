@@ -130,7 +130,7 @@ const Articles = () => {
           transition: { delay: 1 },
         })
         fetch(mediumRssFeed, { headers: { Accept: "application/json" } })
-        // fetch(rssFeed, { headers: { Accept: "application/json" } })
+          // fetch(rssFeed, { headers: { Accept: "application/json" } })
           .then(res => res.json())
           // Feed also contains comments, therefore we filter for articles only
           .then(data => data.items.filter(item => item.categories.length > 0))
