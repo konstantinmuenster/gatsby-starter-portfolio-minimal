@@ -61,7 +61,7 @@ const Imprint = ({ data }) => {
         />
         <StyledSection id={title}>
           <StyledContentWrapper>
-            <h1>{title}</h1>
+            <h1 data-testid="heading">{title}</h1>
             <MDXRenderer>{body}</MDXRenderer>
           </StyledContentWrapper>
         </StyledSection>
