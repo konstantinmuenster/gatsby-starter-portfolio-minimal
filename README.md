@@ -12,9 +12,9 @@ Just install the starter, add your content, and there you go!
 
 <a href="https://gatsby-starter-portfolio-minimal.netlify.app/" target="_blank"><strong>>> LIVE DEMO</strong></a>
 
-<a href="https://konstantin.digital/" target="_blank"><strong>>> LIVE DEMO (with Splash Screen)</strong></a>
+<a href="https://konstantin.digital/" target="_blank"><strong>>> LIVE DEMO (with Splash Screen and Cookie Bar)</strong></a>
 
-**New Features:** 🌛 Dark Mode · 🪟 Splash Screen
+**New Features:** 🌛 Dark Mode · 🪟 Splash Screen · 🍪 Cookie Consent Bar
 
 ---
 
@@ -37,6 +37,10 @@ The starter has predefined sections as well as a template that you can use to cr
 ---
 
 ## Features
+
+#### 🍪 [NEW] Cookie Consent Bar - Be ready for GDPR-compliant tracking.
+
+Add tracking services like Google Analytics to your site and display a GDPR-compliant cookie consent banner.
 
 #### 🌛 [NEW] Dark Mode - Based on user's preferences.
 
