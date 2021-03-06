@@ -268,17 +268,17 @@ const Projects = ({ content }) => {
           </div>
         </motion.div>
         <div className="projects">
-          {projects.map(project => {
+          {projects.map((project, key) => {
             const { body, frontmatter } = project.node
             return (
               <VisibilitySensor
-                key={frontmatter.position}
-                onChange={() => handleOnScreen(frontmatter.position)}
+                key={key}
+                onChange={() => handleOnScreen(key + 1)}
                 partialVisibility={true}
                 minTopValue={100}
               >
                 <StyledProject
-                  position={frontmatter.position}
+                  position={key + 1}
                   variants={pVariants}
                   animate={
                     onScreen[frontmatter.position] ? "visible" : "hidden"
