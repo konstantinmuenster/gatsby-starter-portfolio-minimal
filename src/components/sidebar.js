@@ -88,13 +88,25 @@ const Sidebar = ({ open, setOpen }) => {
               {name}
             </Link>
           ))}
-          <Link
-            className="cta-btn"
-            to={button.url}
-            onClick={() => setOpen(!open)}
-          >
-            {button.name}
-          </Link>
+          {button.useFileName ? (
+            <a
+              className="cta-btn"
+              href={`/${button.fileName}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(!open)}
+            >
+              {button.name}
+            </a>
+          ) : (
+            <Link
+              className="cta-btn"
+              to={button.url}
+              onClick={() => setOpen(!open)}
+            >
+              {button.name}
+            </Link>
+          )}
         </StyledNav>
       </StyledContainer>
       <StyledBackdrop open={open} />

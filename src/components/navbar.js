@@ -21,7 +21,6 @@ const StyledNav = styled.nav`
     font-weight: 700;
     text-align: center;
     position: relative;
-    margin: 0 0 0 1.25rem;
     padding: 0;
     &::before {
       transition: 200ms ease-out;
@@ -65,9 +64,20 @@ const Navbar = () => {
           </Link>
         )
       })}
-      <Link className="cta-btn" to={button.url}>
-        {button.name}
-      </Link>
+      {button.useFileName ? (
+        <a
+          className="cta-btn"
+          href={`/${button.fileName}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {button.name}
+        </a>
+      ) : (
+        <Link className="cta-btn" to={button.url}>
+          {button.name}
+        </Link>
+      )}
     </StyledNav>
   )
 }

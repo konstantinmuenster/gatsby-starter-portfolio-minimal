@@ -52,7 +52,7 @@ module.exports = {
 
   //-- SOCIAL MEDIA SETTINGS -----
   // There are icons available for the following platforms:
-  // Medium, GitHub, LinkedIn, XING, Behance
+  // Medium, GitHub, LinkedIn, XING, Behance, E-Mail
   socialMedia: [
     {
       name: "Linkedin",
@@ -71,15 +71,15 @@ module.exports = {
       name: "Behance",
       url: "https://www.behance.net/konstanmnster",
     },
+    // {
+    //   name: "E-Mail",
+    //   url: "mailto:mail@konstantin.digital",
+    // },
   ],
 
   //-- NAVIGATION SETTINGS -----
   navLinks: {
     menu: [
-      {
-        name: "Articles",
-        url: "/#articles",
-      },
       {
         name: "About Me",
         url: "/#about",
@@ -88,10 +88,16 @@ module.exports = {
         name: "Features",
         url: "/#projects",
       },
+      {
+        name: "Contact",
+        url: "/#contact",
+      },
     ],
     button: {
-      name: "Contact",
-      url: "/#contact",
+      useFileName: true,
+      name: "Resume",
+      fileName: "goldenpuppy.pdf", // the file has to be placed inside the static folder at the root level
+      url: "", // if useFileName=false, you can set an anchor link here and use the button for navigational purposes
     },
   },
   footerLinks: [
