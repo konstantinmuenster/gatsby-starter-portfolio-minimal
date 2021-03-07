@@ -24,7 +24,7 @@ const Icon = ({ name, color }) => {
       return <IconBehance color={color} />
     case "external":
       return <IconExternal color={color} />
-    case "e-mail":
+    case "mail":
       return <IconMail color={color} />
     default:
       return null

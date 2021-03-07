@@ -74,7 +74,7 @@ module.exports = {
       url: "https://www.behance.net/konstanmnster",
     },
     // {
-    //   name: "E-Mail",
+    //   name: "Mail",
     //   url: "mailto:mail@konstantin.digital",
     // },
   ],
