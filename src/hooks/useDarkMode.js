@@ -16,7 +16,7 @@ const useDarkMode = () => {
       }
     }
 
-    if (darkSchemeQuery) {
+    if (darkSchemeQuery.matches) {
       setState({ ...state, darkMode: true })
     }
 
