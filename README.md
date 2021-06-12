@@ -1,3 +1,7 @@
+# 🚨
+
+> **This repository is no longer maintained.** I decided to rebuild the portfolio template as a Gatsby Theme which makes it easier to update. Please use this Starter project instead: **[Gatsby Starter Portfolio Minimal Theme](https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme)**
+
 # Gatsby Starter Portfolio Minimal
 
 #### A modern one-page portfolio with a clean yet expressive design.
